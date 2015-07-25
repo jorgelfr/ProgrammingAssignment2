@@ -21,18 +21,19 @@ makeCacheMatrix <- function(Mat = matrix())
 }
 
 
-## Write a short comment describing this function
+## This function gets the inverse matrix. If matrix has been already calculated, it retrieves the matrix from the parent
+## environment.
 
 cacheSolve <- function(Mat, ...) 
 {
-     m <- Mat$getInv()
-     if(!is.null(m))
+     m <- Mat$getInv() # From the list Mat getInv is readed
+     if(!is.null(m)) # It is checked if inverse matrix has been calculated
      {
-          message("getting cached data")
-          return(m)
+          message("getting cached data") # if inverse matrix has been calculated it retrieves the information that is allocated on memory
+          return(m) # ends function
      }
-     data <- Mat$get()
-     m <- solve(data)
-     Mat$setInv(m)
+     data <- Mat$get() # If matrix has not been calculated, matrix is send for calculation
+     m <- solve(data) # It calculates inverse matrix
+     Mat$setInv(m)  # It saves the inverse matrix
      print(m)
 }
